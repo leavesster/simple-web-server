@@ -8,7 +8,7 @@ python3 flask
 
 ```shell
 brew install python3
-pip3 install flask
+
 ```
 
 ## Example Usage
@@ -16,6 +16,7 @@ pip3 install flask
 ```shell
 cd path # server.py document path
 python3 server.py runserver
+pip3 install -r requirements.txt
 ```
 
 ### website
