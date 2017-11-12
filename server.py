@@ -1,8 +1,11 @@
 from flask import Flask, request, json, Response, redirect
 from flask_script import Manager, Server
+from flask_cache import Cache
 import time
 app = Flask(__name__)
 manager = Manager(app)
+cache = Cache(app,config={'CACHE_TYPE': 'simple'})
+
 
 # Flask Classics
 
@@ -22,6 +25,7 @@ def hello_people(name):
     return 'hello ' + name + '\n'
 
 @app.route('/hello', methods=['GET'])
+@cache.cached(timeout=60)
 def api_hello():
     """ Response """
     data = {
