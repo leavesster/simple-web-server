@@ -56,8 +56,7 @@ def api_message():
         return "Text Message: " + request.data
     elif request.headers['Content-Type'] == 'application/json':
         return "JSON Message: " + json.dumps(request.json)
-    else:
-        return "415 Unsupported Media Type ;)"
+    return "415 Unsupported Media Type ;)"
 
 # HTTP Code
 
@@ -89,8 +88,7 @@ def api_http_code(code):
             return redirect('/', code=http_code)
         elif http_code >= 400 and http_code < 500:
             return Response('fail\n', status=http_code, mimetype='application/json')
-        else:
-            return Response('what do you want ?\n', status=200, mimetype='application/json')
+        return Response('what do you want ?\n', status=200, mimetype='application/json')
     except ValueError:
         return Response('what do you want ?\n', status=200, mimetype='application/json')
 
