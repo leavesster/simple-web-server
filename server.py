@@ -28,6 +28,7 @@ def api_hello():
     }
     message = json.dumps(data)
     resp = Response(message, status=200, mimetype='application/json')
+    resp.cache_control.max_age = 60
     return resp
 
 # Methods
@@ -98,11 +99,11 @@ def api_http_code(code):
 from flask import send_file
 @app.route('/png')
 def png():
-    return send_file('1.png', mimetype='image/png')
+    return send_file('1.png', mimetype='image/png', cache_timeout=60)
 
 @app.route('/jpg')
 def jpg():
-    return send_file('1.jpg', mimetype='image/jpg')
+    return send_file('1.jpg', mimetype='image/jpg', cache_timeout=30)
 
 if __name__ == '__main__':
     manager.add_command("runserver", Server(use_debugger=True, host='0.0.0.0', port=5000))
