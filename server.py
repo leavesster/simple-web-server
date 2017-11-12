@@ -1,6 +1,7 @@
 from flask import Flask, request, json, Response, redirect
+from flask_script import Manager, Server
 app = Flask(__name__)
-
+manager = Manager(app)
 
 # Flask Classics
 
@@ -104,4 +105,5 @@ def jpg():
     return send_file('1.jpg', mimetype='image/jpg')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    manager.add_command("runserver", Server(use_debugger=True, host='0.0.0.0', port=5000))
+    manager.run()
