@@ -94,5 +94,16 @@ def api_http_code(code):
     except ValueError:
         return Response('what do you want ?\n', status=200, mimetype='application/json')
 
+# file
+
+from flask import send_file
+@app.route('/png')
+def png():
+    return send_file('1.png', mimetype='image/png')
+
+@app.route('/jpg')
+def jpg():
+    return send_file('1.jpg', mimetype='image/jpg')
+
 if __name__ == '__main__':
     app.run(debug=True)
