@@ -1,5 +1,6 @@
 from flask import Flask, request, json, Response, redirect
 from flask_script import Manager, Server
+import time
 app = Flask(__name__)
 manager = Manager(app)
 
@@ -104,6 +105,11 @@ def png():
 @app.route('/jpg')
 def jpg():
     return send_file('1.jpg', mimetype='image/jpg', cache_timeout=30)
+
+# request log
+@app.before_request
+def log_request():
+    app.logger.info(time.asctime(time.localtime(time.time())) + ' ' + request.url)
 
 if __name__ == '__main__':
     manager.add_command("runserver", Server(use_debugger=True, host='0.0.0.0', port=5000))
