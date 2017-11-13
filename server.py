@@ -89,10 +89,10 @@ def api_http_code(code):
     """ return HTTP status code you want!"""
     try:
         http_code = int(code)
-        if http_code >= 100 and http_code < 300:
-            return Response('success\n', status=http_code, mimetype='application/json')
-        elif http_code >= 300 and http_code < 400:
+        if (http_code > 300 and http_code < 304) or http_code == 305 or http_code == 307:
             return redirect('/', code=http_code)
+        elif http_code >= 100 and http_code < 400:
+            return Response('success\n', status=http_code, mimetype='application/json')
         elif http_code >= 400 and http_code < 500:
             return Response('fail\n', status=http_code, mimetype='application/json')
         return Response('what do you want ?\n', status=200, mimetype='application/json')
