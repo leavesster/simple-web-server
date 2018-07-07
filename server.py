@@ -110,6 +110,11 @@ def png():
 def jpg():
     return send_file('1.jpg', mimetype='image/jpg', cache_timeout=30)
 
+@app.after_request
+def add_header(response):
+    response.cache_control.max_age = 301
+    return response
+
 # request log
 @app.before_request
 def log_request():

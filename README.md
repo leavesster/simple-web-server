@@ -43,3 +43,11 @@ If you want to see response, call `curl` with `-i`
 curl -i http://127.0.0.1:5000/code/{code} # replace http code
 curl -X {Method} http://127.0.0.1:5000/request # replace Request Method
 ```
+
+## To do
+
+- [ ] cache
+    information:    
+        1. http://docs.jinkan.org/docs/flask/patterns/caching.html
+        2. http://www.bjhee.com/flask-ext6.html
+        3. https://pythonhosted.org/Flask-Cache/
